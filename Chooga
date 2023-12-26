@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct NODE {
+	struct NODE* next;  /*그 다음 노드를 가리킨다*/
+	int data;
+};
+
+void addFirst(struct NODE* target, int data)
+{
+	struct NODE* newNode = (NODE*)malloc(sizeof(struct NODE));
+	newNode->next = target->next;
+	newNode->data = data;
+
+	target->next = newNode;
+
+}
+
+int main()
+{
+	struct NODE* head = (NODE*)malloc((sizeof NODE));
+
+	head->next = NULL;
+
+	addFirst(head, 10);
+  addFirst(head, 20); /* target 과 data 10 짜리 노드의 중간에 오게 된다 */
+  addFirst(head, 30); /* target 과 data 20 짜리 노드의 중간에 오게 된다 */
+
+	struct NODE* curr = head->next;
+
+	while (curr != NULL)
+	{
+		printf("%d\n", curr->data);
+		curr = curr->next;
+	}
